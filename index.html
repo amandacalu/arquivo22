@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Arquivo 22 (do bem)</title>
+  <meta name="description" content="acesso restrito. 1 usuário autorizado.">
+  <meta property="og:title" content="Arquivo 22 (do bem)">
+  <meta property="og:description" content="acesso restrito. 1 usuário autorizado.">
+  <meta name="theme-color" content="#0b0908">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0908'/%3E%3Cpath d='M16 22l12 10-12 10' fill='none' stroke='%23ff7a1a' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M32 44h16' stroke='%23ff7a1a' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Canadian+Aboriginal&family=Noto+Sans+Math&family=Noto+Sans+Symbols+2&family=Noto+Sans+Vai&family=Noto+Sans+JP&text=%E1%94%91%CA%96%E1%93%B5%E2%86%B8%E1%92%B7%E2%8E%93%E2%8A%A3%E2%8D%91%E2%95%8E%E2%8B%AE%EA%96%8C%EA%96%8E%E1%92%B2%E3%83%AA%E1%91%91%E2%88%B7%E1%93%AD%E2%84%B8%E2%9A%8D%E2%8D%8A%E2%88%B4%E2%A8%85&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/Monocraft-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg" id="bg"></div>
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- 1. boot + enigma inicial -->
+  <main id="boot" class="stage" hidden>
+    <div id="bootMount" class="boot-mount"></div>
+    <p class="skip" id="skip">toque ou aperte qualquer tecla para acelerar</p>
+  </main>
+
+  <!-- 2. hub com as categorias -->
+  <section id="hub" class="stage" hidden>
+    <header class="hub-head">
+      <div class="hub-path"><span class="dot"></span><span id="hubWho"></span></div>
+      <h1 class="hub-title">Arquivo <em>22</em><span class="splash" id="splash"></span></h1>
+      <div class="hub-tag">(do bem)</div>
+      <p class="hub-sub">6 pastas. 22 coisas em cada. um enigma pra cada porta.</p>
+      <div class="xp" aria-hidden="true"><div class="xp-lvl">22</div><div class="xp-bar"><span id="xpFill"></span></div></div>
+      <div class="prog-txt" id="progTxt"></div>
+    </header>
+
+    <div class="car">
+      <div class="track" id="track"></div>
+      <div class="car-nav">
+        <button class="nav-btn" id="prev" type="button" aria-label="anterior">←</button>
+        <div class="dots" id="dots"></div>
+        <button class="nav-btn" id="next" type="button" aria-label="próximo">→</button>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <span id="footSig"></span>
+      <button class="linkish" id="reset" type="button">rm -rf ~/.progresso</button>
+    </footer>
+
+    <button class="mail" id="mail" type="button" hidden>
+      <span class="mail-dot"></span>
+      <span>1 nova mensagem em <b id="mailPath"></b></span>
+      <span class="mail-go">ler →</span>
+    </button>
+  </section>
+
+  <!-- terminal dos enigmas -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-back" data-close></div>
+    <div id="modalMount" class="modal-mount"></div>
+  </div>
+
+  <!-- conteúdo desbloqueado -->
+  <div class="viewer" id="viewer" hidden>
+    <div class="v-head">
+      <div class="v-path" id="vPath"></div>
+      <button class="v-close" id="vClose" type="button"><span class="kbd">esc</span> sair</button>
+    </div>
+    <div class="v-body" id="vBody"></div>
+  </div>
+
+  <!-- foto em tela cheia -->
+  <div class="light" id="light" hidden>
+    <button class="l-btn l-prev" id="lPrev" type="button" aria-label="foto anterior">←</button>
+    <figure class="l-fig">
+      <img id="lImg" alt="">
+      <figcaption id="lCap"></figcaption>
+      <div class="l-com">
+        <label class="l-com-k" for="lText">// deixa um comentário nessa foto (fica salvo aqui no site)</label>
+        <textarea id="lText" rows="2" maxlength="600" placeholder="escreve aqui..."></textarea>
+        <div class="l-com-row"><span class="l-saved" id="lSaved"></span><button class="pill" id="lSend" type="button"></button></div>
+      </div>
+    </figure>
+    <button class="l-btn l-next" id="lNext" type="button" aria-label="próxima foto">→</button>
+    <button class="l-close" id="lClose" type="button" aria-label="fechar">✕</button>
+  </div>
+
+  <div id="fx" aria-live="assertive"></div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="adv" id="adv" role="status"><div class="adv-ico"></div><div><div class="adv-t"></div><div class="adv-n"></div></div></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
