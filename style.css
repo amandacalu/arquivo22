@@ -672,10 +672,10 @@ body.in-hub #rain { opacity: .22; }
 /* ============================================================
    CAMADA MINECRAFT
    ============================================================ */
-@font-face { font-family: 'Monocraft'; src: url('fonts/Monocraft-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Monocraft'; src: url('fonts/Monocraft-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Monocraft'; src: url('fonts/Monocraft-Bold.woff2') format('woff2'); font-weight: 500 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Monocraft'; src: url('fonts/Monocraft-Black.woff2') format('woff2'); font-weight: 800 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Monocraft'; src: url('Monocraft-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Monocraft'; src: url('Monocraft-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Monocraft'; src: url('Monocraft-Bold.woff2') format('woff2'); font-weight: 500 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Monocraft'; src: url('Monocraft-Black.woff2') format('woff2'); font-weight: 800 900; font-style: normal; font-display: swap; }
 
 :root {
   --sga: 'Noto Sans Canadian Aboriginal', 'Noto Sans Math', 'Noto Sans Symbols 2', 'Noto Sans Vai', 'Noto Sans JP';
